@@ -6,9 +6,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ScenarioItemTemplate">
+                <TextBlock Text="{Binding Title}"></TextBlock>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="OurHelloTextBlock" Text="Hello World"></TextBlock>
-        <Button Content="Good bye!" Click="Button_Click"></Button>
+        <SplitView IsPaneOpen="True" DisplayMode="CompactInline">
+            <SplitView.Pane>
+                <StackPanel>
+                    <ListView x:Name="ScenarioList" 
+                              ItemTemplate="{StaticResource ScenarioItemTemplate}"
+                              SelectionChanged="ScenarioList_SelectionChanged" />
+                </StackPanel>
+            </SplitView.Pane>
+            <Grid>
+                <TextBlock x:Name="OurHelloTextBlock" Text="Hello World"></TextBlock>
+                <Button Content="Good bye!" Click="Button_Click"></Button>
+            </Grid>
+        </SplitView>
     </Grid>
 </Page>

@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="Demo_App.DeviceSpecificCodeExample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo_App"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Demo_App.Converters"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <converters:BooleanNegationToVisibilityConverter x:Key="BooleanNegationToVisibilityConverter" />
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="SoftCameraButton" Visibility="{Binding IsCameraButtonPresent, Converter={StaticResource BooleanNegationToVisibilityConverter}}" Height="100" Width="100">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <SymbolIcon Height="100" Width="100" Symbol="Camera"></SymbolIcon>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <TextBlock Text="Your device has a hardware camera button. Go ahead and use it." TextWrapping="WrapWholeWords"  Visibility="{Binding IsCameraButtonPresent, Converter={StaticResource BooleanToVisibilityConverter}}"></TextBlock>
+    </Grid>
+</Page>

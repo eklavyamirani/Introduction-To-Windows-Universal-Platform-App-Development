@@ -25,11 +25,22 @@ namespace Demo_App
         public MainPage()
         {
             this.InitializeComponent();
+            this.ScenarioList.ItemsSource = this.Scenarios;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.OurHelloTextBlock.Text = "Alright! Goodbye.";
+        }
+
+        private void ScenarioList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var scenario = this.ScenarioList.SelectedItem as Scenario;
+            if (scenario != null)
+            {
+                Frame rootFrame = Window.Current.Content as Frame;
+                rootFrame?.Navigate(scenario.Page);
+            }
         }
     }
 }
