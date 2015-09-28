@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.Mvvm;
+using MVVMApp.UILogic.ViewModels;
+using MVVMApp.Views;
 
 namespace MVVMApp
 {
@@ -59,12 +61,13 @@ namespace MVVMApp
 
         private void RegisterCommonClasses()
         {
-            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
-            {
-                var viewModelTypeName = string.Format(CultureInfo.InvariantCulture, "MVVMApp.UILogic.ViewModels.{0}ViewModel, MVVMApp.UILogic", viewType.Name);
-                var viewModelType = Type.GetType(viewModelTypeName);
-                return viewModelType;
-            });
+            ViewModelLocationProvider.Register(typeof (HomePage).ToString(), () => new HomePageViewModel());
+            //ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
+            //{
+            //    var viewModelTypeName = string.Format(CultureInfo.InvariantCulture, "MVVMApp.UILogic.ViewModels.{0}ViewModel, MVVMApp.UILogic", viewType.Name);
+            //    var viewModelType = Type.GetType(viewModelTypeName);
+            //    return viewModelType;
+            //});
         }
 
         ///// <summary>

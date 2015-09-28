@@ -5,5 +5,36 @@
     xmlns:local="using:MVVMApp"
     xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
     RequestedTheme="Light">
-
+    <mvvm:MvvmAppBase.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MvvmAppHeaderStyle" TargetType="TextBlock">
+                <Setter Property="FontStyle" Value="Italic"></Setter>
+                <Setter Property="FontFamily" Value="Comic Sans"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <StackPanel x:Name="Content" Padding="10,10,10,10" BorderThickness="2" BorderBrush="Black" CornerRadius="2">
+                                <TextBlock Text="{TemplateBinding Content}"></TextBlock>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Content">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="#aaaaaa"></DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </mvvm:MvvmAppBase.Resources>
 </mvvm:MvvmAppBase>

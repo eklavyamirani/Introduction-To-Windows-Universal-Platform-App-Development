@@ -11,6 +11,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+        <TextBlock Text="{Binding Title}" Style="{StaticResource MvvmAppHeaderStyle}"></TextBlock>
+        <Button Content="Some random content"></Button>
     </Grid>
 </storeApps:VisualStateAwarePage>
